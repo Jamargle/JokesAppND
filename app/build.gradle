@@ -42,6 +42,9 @@ dependencies {
     //JokesLib
     implementation project(':jokeslib')
 
+    //Step2Library
+    implementation project(':step2library')
+
     // Butterknife
     implementation "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"

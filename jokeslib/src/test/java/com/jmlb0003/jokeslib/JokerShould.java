@@ -5,9 +5,8 @@ import org.junit.Test;
 public class JokerShould {
 
     @Test
-    public void test() {
-        final Joker joker = new Joker();
-        assert joker.getJoke().length() != 0;
+    public void returnAJoke() {
+        assert Joker.getJoke().length() != 0;
     }
 
 }

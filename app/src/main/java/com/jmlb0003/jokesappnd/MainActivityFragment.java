@@ -41,8 +41,7 @@ public final class MainActivityFragment extends Fragment {
 
     @OnClick(R.id.tell_joke_button)
     public void tellJoke() {
-        final Joker joker = new Joker();
-        Toast.makeText(getActivity(), joker.getJoke(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), Joker.getJoke(), Toast.LENGTH_SHORT).show();
     }
 
     interface Callback {

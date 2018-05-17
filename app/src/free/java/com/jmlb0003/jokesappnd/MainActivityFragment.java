@@ -3,25 +3,33 @@ package com.jmlb0003.jokesappnd;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.jmlb0003.jokesappnd.Interstitial.InterstitialAdFragment;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
-public final class MainActivityFragment extends Fragment
-        implements JokesAsyncTask.JokeAsyncTaskListener {
+public final class MainActivityFragment extends InterstitialAdFragment
+        implements MainActivityFragmentPresenter.View,
+        JokesAsyncTask.JokeAsyncTaskListener {
 
     @BindView(R.id.adView) AdView adView;
 
+    private MainActivityFragmentPresenter presenter;
     private Callback callback;
 
-    public MainActivityFragment() {
+    @Override
+    public void onCreate(final @Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        presenter = new MainActivityFragmentPresenterImp();
     }
 
     @Override
@@ -38,8 +46,35 @@ public final class MainActivityFragment extends Fragment
         return root;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        presenter.attachView(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.detachView();
+    }
+
+    @Override
+    protected void nextScreen() {
+        continueTheFlowAfterAd();
+    }
+
     @OnClick(R.id.tell_joke_button)
     public void tellJoke() {
+        presenter.onTellJoke();
+    }
+
+    @Override
+    public void openInterstitialAd() {
+        openAd();
+    }
+
+    @Override
+    public void continueTheFlowAfterAd() {
         new JokesAsyncTask(new ProgressDialog(getActivity()), this).execute();
     }
 

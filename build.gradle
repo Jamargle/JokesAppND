@@ -40,6 +40,7 @@ ext {
     constraintLayoutVersion = '1.1.0'
     servletVersion = '2.5'
     butterknifeVersion = '8.8.1'
+    firebaseVersion = '15.0.2'
     playServicesAdsVersion = '15.0.1'
     googleApiClientVersion = '1.23.0'
     googleFindBugsVersion = '3.0.1'

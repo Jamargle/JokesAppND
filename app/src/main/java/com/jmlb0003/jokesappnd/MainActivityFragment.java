@@ -39,7 +39,7 @@ public final class MainActivityFragment extends Fragment
 
     @OnClick(R.id.tell_joke_button)
     public void tellJoke() {
-        new JokesAsyncTask(this).execute();
+        new JokesAsyncTask(getActivity(), this).execute();
     }
 
     @Override

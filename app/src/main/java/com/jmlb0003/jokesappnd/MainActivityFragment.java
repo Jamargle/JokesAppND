@@ -1,5 +1,6 @@
 package com.jmlb0003.jokesappnd;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -39,7 +40,7 @@ public final class MainActivityFragment extends Fragment
 
     @OnClick(R.id.tell_joke_button)
     public void tellJoke() {
-        new JokesAsyncTask(getActivity(), this).execute();
+        new JokesAsyncTask(new ProgressDialog(getActivity()), this).execute();
     }
 
     @Override

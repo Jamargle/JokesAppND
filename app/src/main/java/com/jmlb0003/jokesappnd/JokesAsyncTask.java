@@ -1,14 +1,12 @@
 package com.jmlb0003.jokesappnd;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.jmlb0003.backend.jokeApi.JokeApi;
-import com.jmlb0003.jokeslib.Joker;
 import java.io.IOException;
 
 public final class JokesAsyncTask extends AsyncTask<Void, Void, String> {
@@ -21,10 +19,10 @@ public final class JokesAsyncTask extends AsyncTask<Void, Void, String> {
     private final JokeAsyncTaskListener asyncTaskListener;
 
     JokesAsyncTask(
-            final Context context,
+            final ProgressDialog dialog,
             final JokeAsyncTaskListener listener) {
 
-        dialog = new ProgressDialog(context);
+        this.dialog = dialog;
         asyncTaskListener = listener;
     }
 

@@ -43,7 +43,7 @@ public final class TellAJokeFragment extends Fragment
             final ViewGroup container,
             final Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_tell_a_joke, container);
+        return inflater.inflate(R.layout.fragment_tell_a_joke, container, false);
     }
 
     @Override

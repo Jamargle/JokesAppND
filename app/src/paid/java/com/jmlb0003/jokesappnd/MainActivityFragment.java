@@ -3,21 +3,26 @@ package com.jmlb0003.jokesappnd;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public final class MainActivityFragment extends Fragment
-        implements JokesAsyncTask.JokeAsyncTaskListener {
+        implements MainActivityFragmentPresenter.View,
+        JokesAsyncTask.JokeAsyncTaskListener {
 
+    private MainActivityFragmentPresenter presenter;
     private Callback callback;
 
-    public MainActivityFragment() {
+    @Override
+    public void onCreate(final @Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        presenter = new MainActivityFragmentPresenterImp();
     }
 
     @Override
@@ -33,8 +38,25 @@ public final class MainActivityFragment extends Fragment
         return root;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        presenter.attachView(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.detachView();
+    }
+
     @OnClick(R.id.tell_joke_button)
     public void tellJoke() {
+        presenter.onTellJoke();
+    }
+
+    @Override
+    public void retrieveAJoke() {
         new JokesAsyncTask(new ProgressDialog(getActivity()), this).execute();
     }
 

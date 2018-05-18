@@ -64,10 +64,12 @@ dependencies {
     // Firebase
     implementation "com.google.firebase:firebase-core:$rootProject.firebaseVersion"
 
-    implementation "com.google.android.gms:play-services-ads:$rootProject.ext.playServicesAdsVersion"
     implementation "com.google.api-client:google-api-client:$rootProject.ext.googleApiClientVersion"
     implementation "com.google.http-client:google-http-client-android:$rootProject.ext.googleApiClientVersion"
     implementation "com.google.code.findbugs:jsr305:$rootProject.ext.googleFindBugsVersion"
+
+    // Play Services only for free flavor
+    freeImplementation "com.google.android.gms:play-services-ads:$rootProject.ext.playServicesAdsVersion"
 
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.ext.testRunnerVersion"
